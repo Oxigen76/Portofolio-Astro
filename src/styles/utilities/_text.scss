@@ -1,0 +1,166 @@
+// Additional text utility classes
+
+// ===== WORD BREAK UTILITIES =====
+
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+// ===== WHITE SPACE UTILITIES =====
+
+.whitespace-normal {
+  white-space: normal !important;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap !important;
+}
+
+.whitespace-pre {
+  white-space: pre !important;
+}
+
+.whitespace-pre-line {
+  white-space: pre-line !important;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap !important;
+}
+
+// ===== TEXT SELECTION =====
+
+.select-none {
+  user-select: none !important;
+}
+
+.select-text {
+  user-select: text !important;
+}
+
+.select-all {
+  user-select: all !important;
+}
+
+.select-auto {
+  user-select: auto !important;
+}
+
+// ===== FONT FAMILY UTILITIES =====
+
+.font-sans {
+  font-family: $font-primary !important;
+}
+
+.font-serif {
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+.font-mono {
+  font-family: $font-mono !important;
+}
+
+// ===== LETTER SPACING =====
+
+.tracking-tighter {
+  letter-spacing: -0.05em !important;
+}
+
+.tracking-tight {
+  letter-spacing: -0.025em !important;
+}
+
+.tracking-normal {
+  letter-spacing: 0em !important;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em !important;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em !important;
+}
+
+.tracking-widest {
+  letter-spacing: 0.1em !important;
+}
+
+// ===== TEXT SHADOW =====
+
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.text-shadow {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+.text-shadow-md {
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+}
+
+.text-shadow-lg {
+  text-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.text-shadow-xl {
+  text-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+.text-shadow-none {
+  text-shadow: none !important;
+}
+
+// ===== RESPONSIVE TEXT UTILITIES =====
+
+@include mobile-only {
+  .mobile\:text-xs { font-size: $font-size-xs !important; }
+  .mobile\:text-sm { font-size: $font-size-sm !important; }
+  .mobile\:text-base { font-size: $font-size-base !important; }
+  .mobile\:text-lg { font-size: $font-size-lg !important; }
+  .mobile\:text-xl { font-size: $font-size-xl !important; }
+  .mobile\:text-2xl { font-size: $font-size-2xl !important; }
+  .mobile\:text-3xl { font-size: $font-size-3xl !important; }
+  
+  .mobile\:text-left { text-align: left !important; }
+  .mobile\:text-center { text-align: center !important; }
+  .mobile\:text-right { text-align: right !important; }
+}
+
+@include tablet-up {
+  .tablet\:text-xs { font-size: $font-size-xs !important; }
+  .tablet\:text-sm { font-size: $font-size-sm !important; }
+  .tablet\:text-base { font-size: $font-size-base !important; }
+  .tablet\:text-lg { font-size: $font-size-lg !important; }
+  .tablet\:text-xl { font-size: $font-size-xl !important; }
+  .tablet\:text-2xl { font-size: $font-size-2xl !important; }
+  .tablet\:text-3xl { font-size: $font-size-3xl !important; }
+  
+  .tablet\:text-left { text-align: left !important; }
+  .tablet\:text-center { text-align: center !important; }
+  .tablet\:text-right { text-align: right !important; }
+}
+
+@include desktop-up {
+  .desktop\:text-xs { font-size: $font-size-xs !important; }
+  .desktop\:text-sm { font-size: $font-size-sm !important; }
+  .desktop\:text-base { font-size: $font-size-base !important; }
+  .desktop\:text-lg { font-size: $font-size-lg !important; }
+  .desktop\:text-xl { font-size: $font-size-xl !important; }
+  .desktop\:text-2xl { font-size: $font-size-2xl !important; }
+  .desktop\:text-3xl { font-size: $font-size-3xl !important; }
+  
+  .desktop\:text-left { text-align: left !important; }
+  .desktop\:text-center { text-align: center !important; }
+  .desktop\:text-right { text-align: right !important; }
+}

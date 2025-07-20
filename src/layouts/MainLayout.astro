@@ -1,0 +1,146 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  structuredData?: object;
+}
+
+const {
+  title = "My Portfolio – Dragos Victor",
+  description = "Cybersecurity Portfolio – Security Assessments, AI Projects, and Research Articles.",
+  canonical = "https://dragosvictor.tech/",
+  ogImage = "/images/og-image.jpg",
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+// Get current URL for canonical and Open Graph
+const currentUrl = new URL(Astro.request.url);
+const canonicalUrl = canonical || currentUrl.href;
+
+// Structured data for SEO
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dragos Victor",
+  "jobTitle": "Cybersecurity Specialist",
+  "description": description,
+  "url": canonicalUrl,
+  "sameAs": [
+    "https://linkedin.com/in/dragosvictor",
+    "https://github.com/Oxigen76"
+  ]
+};
+
+const finalStructuredData = structuredData || defaultStructuredData;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- Essential Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Robots Meta -->
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Dragos Victor Portfolio" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="msapplication-TileColor" content="#0f172a" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalStructuredData)} is:inline></script>
+    
+    <!-- Theme initialization script (runs before page load) -->
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      (function() {
+        const getThemePreference = () => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+        
+        const theme = getThemePreference();
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Add theme class to body for CSS targeting
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  
+  <body data-testid="main-layout">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header data-testid="main-header" role="banner">
+      <nav data-testid="main-navigation" role="navigation" aria-label="Main navigation">
+        <!-- Navigation will be implemented in Task 3 -->
+        <div class="nav-placeholder">
+          <span>Navigation placeholder</span>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content" data-testid="main-content" role="main">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer data-testid="main-footer" role="contentinfo">
+      <div class="footer-content">
+        <p>&copy; 2025 Dragos Victor. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <!-- Load asset optimization script -->
+    <script src="/scripts/asset-optimization.js" is:inline></script>
+  </body>
+</html>
+
+<style lang="scss">
+  // Import the main SCSS file
+  @import '../styles/main.scss';
+</style>

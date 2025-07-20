@@ -1,0 +1,213 @@
+// SCSS Variables for the portfolio
+// These variables define the design system tokens
+
+// ===== COLORS =====
+
+// Primary Brand Colors
+$primary-blue: #3498db;
+$primary-blue-dark: #2980b9;
+$primary-blue-light: #5dade2;
+
+// Neutral Colors
+$white: #ffffff;
+$black: #000000;
+$gray-50: #f8f9fa;
+$gray-100: #f1f3f4;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Semantic Colors
+$success: #27ae60;
+$success-light: #2ecc71;
+$warning: #f39c12;
+$warning-light: #f1c40f;
+$error: #e74c3c;
+$error-light: #ec7063;
+$info: #3498db;
+$info-light: #5dade2;
+
+// Background Colors
+$bg-primary-light: $white;
+$bg-secondary-light: $gray-50;
+$bg-tertiary-light: $gray-100;
+$bg-accent-light: rgba($primary-blue, 0.1);
+
+$bg-primary-dark: #0f172a;
+$bg-secondary-dark: #1e293b;
+$bg-tertiary-dark: #334155;
+$bg-accent-dark: rgba($primary-blue-light, 0.15);
+
+// Text Colors
+$text-primary-light: #2c3e50;
+$text-secondary-light: #5a6c7d;
+$text-tertiary-light: #7f8c8d;
+$text-inverse-light: $white;
+
+$text-primary-dark: #f1f5f9;
+$text-secondary-dark: #cbd5e1;
+$text-tertiary-dark: #94a3b8;
+$text-inverse-dark: $bg-primary-dark;
+
+// Border Colors
+$border-light: #e2e8f0;
+$border-dark: #475569;
+
+// Shadow Colors
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.15);
+$shadow-heavy: rgba(0, 0, 0, 0.25);
+
+// ===== TYPOGRAPHY =====
+
+// Font Families
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-secondary: 'Inter', system-ui, sans-serif;
+$font-mono: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Font Sizes
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 3rem;      // 48px
+$font-size-6xl: 4rem;      // 64px
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// ===== SPACING =====
+
+// Base spacing unit
+$spacing-unit: 1rem; // 16px
+
+// Spacing scale
+$spacing-xs: $spacing-unit * 0.25;  // 4px
+$spacing-sm: $spacing-unit * 0.5;   // 8px
+$spacing-md: $spacing-unit * 0.75;  // 12px
+$spacing-base: $spacing-unit;       // 16px
+$spacing-lg: $spacing-unit * 1.5;   // 24px
+$spacing-xl: $spacing-unit * 2;     // 32px
+$spacing-2xl: $spacing-unit * 3;    // 48px
+$spacing-3xl: $spacing-unit * 4;    // 64px
+$spacing-4xl: $spacing-unit * 5;    // 80px
+$spacing-5xl: $spacing-unit * 6;    // 96px
+
+// ===== LAYOUT =====
+
+// Container widths
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;
+
+// Max content width
+$max-width: 1200px;
+
+// Header height
+$header-height: 70px;
+
+// ===== BORDERS =====
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-base: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 20px;
+$border-radius-2xl: 24px;
+$border-radius-full: 50%;
+
+// Border widths
+$border-width-thin: 1px;
+$border-width-base: 2px;
+$border-width-thick: 4px;
+
+// ===== SHADOWS =====
+
+// Box shadows
+$shadow-sm: 0 1px 2px 0 $shadow-light;
+$shadow-base: 0 1px 3px 0 $shadow-light, 0 1px 2px 0 $shadow-light;
+$shadow-md: 0 4px 6px -1px $shadow-light, 0 2px 4px -1px $shadow-light;
+$shadow-lg: 0 10px 15px -3px $shadow-light, 0 4px 6px -2px $shadow-light;
+$shadow-xl: 0 20px 25px -5px $shadow-light, 0 10px 10px -5px $shadow-light;
+$shadow-2xl: 0 25px 50px -12px $shadow-heavy;
+
+// ===== TRANSITIONS =====
+
+// Transition durations
+$transition-fast: 0.15s;
+$transition-base: 0.3s;
+$transition-slow: 0.5s;
+
+// Transition easings
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// ===== BREAKPOINTS =====
+
+// Mobile-first breakpoints
+$breakpoint-sm: 640px;   // Small devices
+$breakpoint-md: 768px;   // Medium devices
+$breakpoint-lg: 1024px;  // Large devices
+$breakpoint-xl: 1280px;  // Extra large devices
+$breakpoint-2xl: 1536px; // 2X large devices
+
+// ===== Z-INDEX =====
+
+// Z-index scale
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+$z-index-toast: 1080;
+
+// ===== COMPONENT SPECIFIC =====
+
+// Navigation
+$nav-height: $header-height;
+$nav-padding: $spacing-lg;
+
+// Cards
+$card-padding: $spacing-xl;
+$card-border-radius: $border-radius-lg;
+
+// Buttons
+$button-padding-y: $spacing-md;
+$button-padding-x: $spacing-xl;
+$button-border-radius: $border-radius-full;
+
+// Forms
+$input-padding-y: $spacing-md;
+$input-padding-x: $spacing-base;
+$input-border-radius: $border-radius-base;
+
+// Hero section
+$hero-min-height: 100vh;
+$hero-padding: $spacing-5xl;

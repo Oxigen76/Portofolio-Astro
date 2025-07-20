@@ -29,7 +29,11 @@ export default defineConfig({
         output: {
           // Asset hashing for cache busting
           assetFileNames: (assetInfo) => {
-            const info = assetInfo.name.split('.');
+            if (!assetInfo.names || assetInfo.names.length === 0) {
+              return `assets/[name]-[hash][extname]`;
+            }
+            const name = assetInfo.names[0];
+            const info = name.split('.');
             const ext = info[info.length - 1];
             if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
               return `images/[name]-[hash][extname]`;

@@ -1,0 +1,164 @@
+// Desktop-specific styles (1024px and up)
+
+@include desktop-up {
+  // ===== HERO SECTION =====
+  
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-4xl;
+    padding: 0 5%;
+    min-height: 100vh;
+    
+    .hero-title {
+      font-size: $font-size-5xl;
+    }
+    
+    .hero-subtitle {
+      font-size: $font-size-xl;
+    }
+    
+    .hero-tagline {
+      font-size: $font-size-lg;
+    }
+    
+    .hero-profile-container {
+      width: 350px;
+      height: 350px;
+    }
+    
+    .hero-cta {
+      flex-direction: row;
+      justify-content: flex-start;
+      
+      .cta-button {
+        width: auto;
+        min-width: 150px;
+      }
+    }
+  }
+  
+  // ===== GRIDS =====
+  
+  .expertise-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: $spacing-xl;
+  }
+  
+  .cert-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-lg;
+  }
+  
+  .skills-container {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: $spacing-3xl;
+  }
+  
+  // ===== ABOUT SECTION =====
+  
+  .about-content {
+    grid-template-columns: 1fr 2fr;
+    gap: $spacing-3xl;
+  }
+  
+  .principles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-base;
+  }
+  
+  // ===== CONTACT SECTION =====
+  
+  .contact-container {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-3xl;
+  }
+  
+  // ===== SECTION SPACING =====
+  
+  .section {
+    padding: $spacing-5xl 0;
+  }
+  
+  // ===== HOVER EFFECTS =====
+  
+  .expertise-card,
+  .cert-card,
+  .timeline-content,
+  .education-card {
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .skill-tag {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  .cta-button,
+  .submit-btn {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  // ===== FLOATING ELEMENTS =====
+  
+  .floating-actions {
+    right: $spacing-xl;
+    bottom: $spacing-xl;
+  }
+  
+  .back-to-top {
+    left: $spacing-xl;
+    bottom: $spacing-xl;
+  }
+}
+
+// ===== LARGE DESKTOP (1280px and up) =====
+
+@include large-desktop-up {
+  .container {
+    max-width: $container-xl;
+  }
+  
+  .hero {
+    .hero-title {
+      font-size: $font-size-6xl;
+    }
+    
+    .hero-subtitle {
+      font-size: $font-size-2xl;
+    }
+    
+    .hero-tagline {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  .section-header h2 {
+    font-size: $font-size-4xl;
+  }
+}
+
+// ===== EXTRA LARGE DESKTOP (1536px and up) =====
+
+@include xl-desktop-up {
+  .container {
+    max-width: $container-2xl;
+  }
+  
+  .section {
+    padding: $spacing-5xl 0;
+  }
+  
+  .hero {
+    gap: $spacing-5xl;
+    
+    .hero-profile-container {
+      width: 400px;
+      height: 400px;
+    }
+  }
+}

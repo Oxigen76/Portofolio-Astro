@@ -17,8 +17,8 @@ export interface Props {
 const {
   src,
   alt,
-  width,
-  height,
+  width = 800,
+  height = 600,
   class: className,
   loading = 'lazy',
   decoding = 'async',
@@ -30,22 +30,25 @@ const {
 
 // Handle both local and external images
 const isLocalImage = src.startsWith('/') || src.startsWith('./') || src.startsWith('../');
+
+// For Astro Image component, we need to provide width and height
+const imageProps = {
+  src,
+  alt,
+  width,
+  height,
+  class: className,
+  loading,
+  decoding,
+  quality,
+  format,
+  ...(sizes && { sizes }),
+  ...rest
+};
 ---
 
 {isLocalImage ? (
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    class={className}
-    loading={loading}
-    decoding={decoding}
-    sizes={sizes}
-    quality={quality}
-    format={format}
-    {...rest}
-  />
+  <Image {...imageProps} />
 ) : (
   <img
     src={src}

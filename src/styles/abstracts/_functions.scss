@@ -1,0 +1,183 @@
+// SCSS Functions for calculations and utilities
+
+@use 'sass:color';
+@use 'sass:map';
+
+// ===== UNIT CONVERSION FUNCTIONS =====
+
+// Convert px to rem
+@function rem($pixels, $base: 16px) {
+  @return ($pixels / $base) * 1rem;
+}
+
+// Convert px to em
+@function em($pixels, $base: 16px) {
+  @return ($pixels / $base) * 1em;
+}
+
+// ===== COLOR FUNCTIONS =====
+
+// Lighten color by percentage
+@function lighten-color($color, $percentage) {
+  @return color.mix(white, $color, $percentage);
+}
+
+// Darken color by percentage
+@function darken-color($color, $percentage) {
+  @return color.mix(black, $color, $percentage);
+}
+
+// Create alpha version of color
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// ===== SPACING FUNCTIONS =====
+
+// Get spacing value by multiplier
+@function spacing($multiplier: 1) {
+  @return $spacing-unit * $multiplier;
+}
+
+// Calculate fluid spacing between min and max values
+@function fluid-spacing($min, $max, $min-vw: 320px, $max-vw: 1200px) {
+  @return calc(#{$min} + #{strip-unit($max - $min)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+}
+
+// ===== TYPOGRAPHY FUNCTIONS =====
+
+// Calculate fluid font size
+@function fluid-font-size($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+  @return calc(#{$min-size} + #{strip-unit($max-size - $min-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+// Strip unit from number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// Power function (for mathematical calculations)
+@function pow($number, $exponent) {
+  $result: 1;
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $result: $result * $number;
+    }
+  } @else if $exponent < 0 {
+    @for $i from 1 through -$exponent {
+      $result: $result / $number;
+    }
+  }
+  @return $result;
+}
+
+// Map deep get function for nested maps
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+// ===== GRID FUNCTIONS =====
+
+// Calculate grid column width
+@function grid-width($columns, $total-columns: 12, $gap: 0) {
+  @return calc((100% - #{$gap} * (#{$total-columns} - 1)) / #{$total-columns} * #{$columns} + #{$gap} * (#{$columns} - 1));
+}
+
+// ===== Z-INDEX FUNCTIONS =====
+
+// Z-index map for consistent layering
+$z-indexes: (
+  'dropdown': 1000,
+  'sticky': 1020,
+  'fixed': 1030,
+  'modal-backdrop': 1040,
+  'modal': 1050,
+  'popover': 1060,
+  'tooltip': 1070,
+  'toast': 1080
+);
+
+@function z-index($key) {
+  @return map.get($z-indexes, $key);
+}
+
+// ===== ANIMATION FUNCTIONS =====
+
+// Easing functions
+$easings: (
+  'ease-in-quad': cubic-bezier(0.55, 0.085, 0.68, 0.53),
+  'ease-in-cubic': cubic-bezier(0.55, 0.055, 0.675, 0.19),
+  'ease-in-quart': cubic-bezier(0.895, 0.03, 0.685, 0.22),
+  'ease-in-quint': cubic-bezier(0.755, 0.05, 0.855, 0.06),
+  'ease-in-expo': cubic-bezier(0.95, 0.05, 0.795, 0.035),
+  'ease-out-quad': cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  'ease-out-cubic': cubic-bezier(0.215, 0.61, 0.355, 1),
+  'ease-out-quart': cubic-bezier(0.165, 0.84, 0.44, 1),
+  'ease-out-quint': cubic-bezier(0.23, 1, 0.32, 1),
+  'ease-out-expo': cubic-bezier(0.19, 1, 0.22, 1),
+  'ease-in-out-quad': cubic-bezier(0.455, 0.03, 0.515, 0.955),
+  'ease-in-out-cubic': cubic-bezier(0.645, 0.045, 0.355, 1),
+  'ease-in-out-quart': cubic-bezier(0.77, 0, 0.175, 1),
+  'ease-in-out-quint': cubic-bezier(0.86, 0, 0.07, 1),
+  'ease-in-out-expo': cubic-bezier(1, 0, 0, 1)
+);
+
+@function easing($key) {
+  @return map.get($easings, $key);
+}
+
+// ===== RESPONSIVE FUNCTIONS =====
+
+// Breakpoint function
+$breakpoints: (
+  'xs': 0,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px
+);
+
+@function breakpoint($key) {
+  @return map-get($breakpoints, $key);
+}
+
+// ===== THEME FUNCTIONS =====
+
+// Get theme color
+@function theme-color($color, $theme: 'light') {
+  $theme-colors: (
+    'light': (
+      'primary': $text-primary-light,
+      'secondary': $text-secondary-light,
+      'tertiary': $text-tertiary-light,
+      'inverse': $text-inverse-light,
+      'bg-primary': $bg-primary-light,
+      'bg-secondary': $bg-secondary-light,
+      'bg-tertiary': $bg-tertiary-light,
+      'bg-accent': $bg-accent-light,
+      'border': $border-light
+    ),
+    'dark': (
+      'primary': $text-primary-dark,
+      'secondary': $text-secondary-dark,
+      'tertiary': $text-tertiary-dark,
+      'inverse': $text-inverse-dark,
+      'bg-primary': $bg-primary-dark,
+      'bg-secondary': $bg-secondary-dark,
+      'bg-tertiary': $bg-tertiary-dark,
+      'bg-accent': $bg-accent-dark,
+      'border': $border-dark
+    )
+  );
+  
+  @return map-deep-get($theme-colors, $theme, $color);
+}

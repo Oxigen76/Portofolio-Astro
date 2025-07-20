@@ -91,20 +91,14 @@ export function preloadCriticalImages(imagePaths: string[]): void {
 }
 
 /**
- * Get optimized image path based on device pixel ratio
+ * Get optimized image path - Astro handles optimization automatically
  */
-export function getOptimizedImagePath(
-  basePath: string,
-  width: number,
-  format: 'webp' | 'jpg' | 'png' = 'webp'
-): string {
-  const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
-  const optimizedWidth = Math.round(width * Math.min(dpr, 2)); // Cap at 2x for performance
-  
-  // For local images, Astro will handle optimization
+export function getOptimizedImagePath(basePath: string): string {
+  // For local images, Astro will handle optimization automatically
   if (basePath.startsWith('/')) {
     return basePath;
   }
   
+  // For external images, return as-is
   return basePath;
 }

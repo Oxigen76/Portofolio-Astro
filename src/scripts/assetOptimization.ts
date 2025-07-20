@@ -33,7 +33,7 @@ function initAssetOptimization(): void {
   
   // Optimize image loading based on connection speed
   if ('connection' in navigator) {
-    const connection = (navigator as any).connection;
+    const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection;
     if (connection && connection.effectiveType) {
       // Adjust image quality based on connection speed
       const isSlowConnection = ['slow-2g', '2g', '3g'].includes(connection.effectiveType);
@@ -86,7 +86,7 @@ function initPerformanceMonitoring(): void {
     
     try {
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-    } catch (e) {
+    } catch {
       // LCP not supported
     }
     
@@ -94,8 +94,12 @@ function initPerformanceMonitoring(): void {
     const clsObserver = new PerformanceObserver((list) => {
       let clsValue = 0;
       for (const entry of list.getEntries()) {
-        if (!(entry as any).hadRecentInput) {
-          clsValue += (entry as any).value;
+        const layoutShiftEntry = entry as PerformanceEntry & { 
+          hadRecentInput?: boolean; 
+          value?: number; 
+        };
+        if (!layoutShiftEntry.hadRecentInput && layoutShiftEntry.value) {
+          clsValue += layoutShiftEntry.value;
         }
       }
       if (clsValue > 0) {
@@ -105,7 +109,7 @@ function initPerformanceMonitoring(): void {
     
     try {
       clsObserver.observe({ entryTypes: ['layout-shift'] });
-    } catch (e) {
+    } catch {
       // CLS not supported
     }
   }

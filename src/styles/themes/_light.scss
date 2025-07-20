@@ -1,0 +1,236 @@
+// Light theme CSS custom properties
+
+:root,
+[data-theme="light"] {
+  // ===== BACKGROUND COLORS =====
+  --bg-primary: #{$bg-primary-light};
+  --bg-secondary: #{$bg-secondary-light};
+  --bg-tertiary: #{$bg-tertiary-light};
+  --bg-accent: #{$bg-accent-light};
+  
+  // Card backgrounds
+  --card-bg: #{$white};
+  --card-shadow: #{rgba(0, 0, 0, 0.1)};
+  
+  // ===== TEXT COLORS =====
+  --text-primary: #{$text-primary-light};
+  --text-secondary: #{$text-secondary-light};
+  --text-tertiary: #{$text-tertiary-light};
+  --text-inverse: #{$text-inverse-light};
+  
+  // ===== BORDER COLORS =====
+  --border-color: #{$border-light};
+  
+  // ===== ACCENT COLORS =====
+  --accent-color: #{$primary-blue};
+  --accent-hover: #{$primary-blue-dark};
+  
+  // ===== SEMANTIC COLORS =====
+  --success-color: #{$success};
+  --warning-color: #{$warning};
+  --error-color: #{$error};
+  --info-color: #{$info};
+  
+  // ===== SHADOW COLORS =====
+  --shadow-light: #{rgba(0, 0, 0, 0.1)};
+  --shadow-medium: #{rgba(0, 0, 0, 0.15)};
+  --shadow-heavy: #{rgba(0, 0, 0, 0.25)};
+  
+  // ===== COMPONENT SPECIFIC =====
+  
+  // Navigation
+  --navbar-bg: #{rgba(255, 255, 255, 0.95)};
+  --navbar-shadow: #{rgba(0, 0, 0, 0.1)};
+  --navbar-border: #{rgba(52, 152, 219, 0.1)};
+  
+  // Hero section
+  --hero-bg: linear-gradient(135deg, #1a2236 0%, #1d3150 100%);
+  --hero-text: #{$white};
+  --hero-text-secondary: #e3f2fd;
+  --hero-text-tertiary: #bbdefb;
+  
+  // Forms
+  --input-bg: #{$bg-secondary-light};
+  --input-border: #{$border-light};
+  --input-focus: #{$primary-blue};
+  --input-error: #{$error};
+  
+  // Buttons
+  --button-primary-bg: #{$primary-blue};
+  --button-primary-hover: #{$primary-blue-dark};
+  --button-primary-text: #{$white};
+  --button-secondary-bg: transparent;
+  --button-secondary-border: #{$primary-blue};
+  --button-secondary-text: #{$primary-blue};
+  --button-secondary-hover-bg: #{$primary-blue};
+  --button-secondary-hover-text: #{$white};
+  
+  // Progress bars and skill indicators
+  --progress-bg: #{$gray-200};
+  --progress-fill: #{$primary-blue};
+  
+  // Timeline
+  --timeline-line: #{$primary-blue};
+  --timeline-marker: #{$primary-blue};
+  --timeline-marker-border: #{$bg-primary-light};
+  
+  // Floating action buttons
+  --fab-bg: linear-gradient(135deg, #{$primary-blue}, #{$primary-blue-dark});
+  --fab-shadow: #{rgba(52, 152, 219, 0.4)};
+  --fab-hover-shadow: #{rgba(52, 152, 219, 0.6)};
+  
+  // Back to top button
+  --back-to-top-bg: #{$gray-700};
+  --back-to-top-hover: #{$gray-800};
+  
+  // Skill tags
+  --skill-tag-bg: #{$bg-accent-light};
+  --skill-tag-text: #{$text-primary-light};
+  --skill-tag-border: #{$border-light};
+  --skill-tag-hover-bg: #{$primary-blue};
+  --skill-tag-hover-text: #{$white};
+  
+  // Certification cards
+  --cert-status-completed: #{$success};
+  --cert-status-progress: #{$warning};
+  --cert-provider-text: #{$primary-blue};
+  
+  // Footer
+  --footer-bg: #{$bg-secondary-light};
+  --footer-text: #{$text-secondary-light};
+  --footer-border: #{$border-light};
+  
+  // ===== GRADIENTS =====
+  --gradient-primary: linear-gradient(135deg, #{$primary-blue}, #{$primary-blue-dark});
+  --gradient-success: linear-gradient(135deg, #{$success}, #{$success-light});
+  --gradient-warning: linear-gradient(135deg, #{$warning}, #{$warning-light});
+  --gradient-error: linear-gradient(135deg, #{$error}, #{$error-light});
+  
+  // Text gradients
+  --text-gradient-primary: linear-gradient(135deg, #{$primary-blue}, #{$primary-blue-dark});
+  --text-gradient-hero: linear-gradient(135deg, #{$white} 0%, #e3f2fd 100%);
+  
+  // ===== ANIMATIONS =====
+  --animation-duration-fast: #{$transition-fast};
+  --animation-duration-base: #{$transition-base};
+  --animation-duration-slow: #{$transition-slow};
+  
+  // ===== BACKDROP FILTERS =====
+  --backdrop-blur: blur(10px);
+  --backdrop-blur-strong: blur(20px);
+  
+  // ===== COMPONENT STATES =====
+  
+  // Hover states
+  --hover-bg: #{rgba(52, 152, 219, 0.1)};
+  --hover-border: #{$primary-blue};
+  
+  // Focus states
+  --focus-ring: #{rgba(52, 152, 219, 0.3)};
+  --focus-border: #{$primary-blue};
+  
+  // Active states
+  --active-bg: #{rgba(52, 152, 219, 0.2)};
+  --active-border: #{$primary-blue-dark};
+  
+  // Disabled states
+  --disabled-bg: #{$gray-100};
+  --disabled-text: #{$gray-400};
+  --disabled-border: #{$gray-200};
+}
+
+// ===== LIGHT THEME SPECIFIC OVERRIDES =====
+
+[data-theme="light"] {
+  // Ensure proper contrast for certain elements
+  .hero {
+    // Hero section maintains dark background even in light theme
+    color: var(--hero-text);
+    
+    .hero-title {
+      background: var(--text-gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      color: var(--hero-text-secondary);
+    }
+    
+    .hero-tagline {
+      color: var(--hero-text-tertiary);
+    }
+  }
+  
+  // Ensure navigation links are visible
+  .nav-link {
+    color: var(--text-primary);
+    
+    &:hover,
+    &:focus,
+    &.active {
+      color: var(--accent-color);
+    }
+  }
+  
+  // Hamburger menu styling
+  .bar {
+    background: var(--text-primary);
+  }
+  
+  // Logo text
+  .logo-text {
+    color: var(--accent-color);
+  }
+  
+  // Ensure form elements have proper contrast
+  input,
+  textarea,
+  select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+    
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+    
+    &:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+    
+    &.error {
+      border-color: var(--input-error);
+    }
+  }
+  
+  // Code blocks
+  code {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+  
+  pre {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+  
+  // Blockquotes
+  blockquote {
+    background: var(--bg-secondary);
+    border-left-color: var(--accent-color);
+    color: var(--text-secondary);
+    
+    &::before {
+      color: var(--accent-color);
+    }
+    
+    cite {
+      color: var(--text-tertiary);
+    }
+  }
+}

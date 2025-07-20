@@ -1,0 +1,134 @@
+// Animation utility classes
+
+// ===== FADE ANIMATIONS =====
+
+.fade-in {
+  @include fade-in;
+}
+
+.fade-in-fast {
+  @include fade-in($transition-fast);
+}
+
+.fade-in-slow {
+  @include fade-in($transition-slow);
+}
+
+// ===== SLIDE ANIMATIONS =====
+
+.slide-up {
+  @include slide-up;
+}
+
+.slide-up-fast {
+  @include slide-up($transition-base, 0s, 20px);
+}
+
+.slide-up-slow {
+  @include slide-up($transition-slow, 0s, 40px);
+}
+
+// ===== SCALE ANIMATIONS =====
+
+.scale-in {
+  @include scale-in;
+}
+
+.scale-in-fast {
+  @include scale-in($transition-fast);
+}
+
+.scale-in-slow {
+  @include scale-in($transition-slow);
+}
+
+// ===== STAGGER ANIMATIONS =====
+
+.stagger-children {
+  @include stagger-animation;
+}
+
+.stagger-children-fast {
+  @include stagger-animation('> *', 0.05s);
+}
+
+.stagger-children-slow {
+  @include stagger-animation('> *', 0.2s);
+}
+
+// ===== ANIMATION DELAYS =====
+
+.delay-0 { animation-delay: 0s !important; }
+.delay-100 { animation-delay: 0.1s !important; }
+.delay-200 { animation-delay: 0.2s !important; }
+.delay-300 { animation-delay: 0.3s !important; }
+.delay-400 { animation-delay: 0.4s !important; }
+.delay-500 { animation-delay: 0.5s !important; }
+.delay-600 { animation-delay: 0.6s !important; }
+.delay-700 { animation-delay: 0.7s !important; }
+.delay-800 { animation-delay: 0.8s !important; }
+.delay-900 { animation-delay: 0.9s !important; }
+.delay-1000 { animation-delay: 1s !important; }
+
+// ===== ANIMATION DURATIONS =====
+
+.duration-fast { animation-duration: $transition-fast !important; }
+.duration-base { animation-duration: $transition-base !important; }
+.duration-slow { animation-duration: $transition-slow !important; }
+
+// ===== TRANSITION UTILITIES =====
+
+.transition-none { transition: none !important; }
+.transition-all { transition: all $transition-base ease !important; }
+.transition-colors { transition: color $transition-base ease, background-color $transition-base ease, border-color $transition-base ease !important; }
+.transition-opacity { transition: opacity $transition-base ease !important; }
+.transition-shadow { transition: box-shadow $transition-base ease !important; }
+.transition-transform { transition: transform $transition-base ease !important; }
+
+// ===== GLOBAL KEYFRAMES =====
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ===== REDUCED MOTION SUPPORT =====
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

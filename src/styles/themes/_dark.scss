@@ -1,0 +1,294 @@
+// Dark theme CSS custom properties
+
+[data-theme="dark"] {
+  // ===== BACKGROUND COLORS =====
+  --bg-primary: #{$bg-primary-dark};
+  --bg-secondary: #{$bg-secondary-dark};
+  --bg-tertiary: #{$bg-tertiary-dark};
+  --bg-accent: #{$bg-accent-dark};
+  
+  // Card backgrounds
+  --card-bg: #{$bg-secondary-dark};
+  --card-shadow: #{rgba(0, 0, 0, 0.3)};
+  
+  // ===== TEXT COLORS =====
+  --text-primary: #{$text-primary-dark};
+  --text-secondary: #{$text-secondary-dark};
+  --text-tertiary: #{$text-tertiary-dark};
+  --text-inverse: #{$text-inverse-dark};
+  
+  // ===== BORDER COLORS =====
+  --border-color: #{$border-dark};
+  
+  // ===== ACCENT COLORS =====
+  --accent-color: #{$primary-blue-light};
+  --accent-hover: #{$primary-blue};
+  
+  // ===== SEMANTIC COLORS =====
+  --success-color: #{$success-light};
+  --warning-color: #{$warning-light};
+  --error-color: #{$error-light};
+  --info-color: #{$info-light};
+  
+  // ===== SHADOW COLORS =====
+  --shadow-light: #{rgba(0, 0, 0, 0.2)};
+  --shadow-medium: #{rgba(0, 0, 0, 0.3)};
+  --shadow-heavy: #{rgba(0, 0, 0, 0.4)};
+  
+  // ===== COMPONENT SPECIFIC =====
+  
+  // Navigation
+  --navbar-bg: #{rgba(15, 23, 42, 0.95)};
+  --navbar-shadow: #{rgba(0, 0, 0, 0.3)};
+  --navbar-border: #{rgba(93, 173, 226, 0.2)};
+  
+  // Hero section (maintains same dark styling)
+  --hero-bg: linear-gradient(135deg, #1a2236 0%, #1d3150 100%);
+  --hero-text: #{$white};
+  --hero-text-secondary: #e3f2fd;
+  --hero-text-tertiary: #bbdefb;
+  
+  // Forms
+  --input-bg: #{$bg-tertiary-dark};
+  --input-border: #{$border-dark};
+  --input-focus: #{$primary-blue-light};
+  --input-error: #{$error-light};
+  
+  // Buttons
+  --button-primary-bg: #{$primary-blue-light};
+  --button-primary-hover: #{$primary-blue};
+  --button-primary-text: #{$bg-primary-dark};
+  --button-secondary-bg: transparent;
+  --button-secondary-border: #{$primary-blue-light};
+  --button-secondary-text: #{$primary-blue-light};
+  --button-secondary-hover-bg: #{$primary-blue-light};
+  --button-secondary-hover-text: #{$bg-primary-dark};
+  
+  // Progress bars and skill indicators
+  --progress-bg: #{$bg-tertiary-dark};
+  --progress-fill: #{$primary-blue-light};
+  
+  // Timeline
+  --timeline-line: #{$primary-blue-light};
+  --timeline-marker: #{$primary-blue-light};
+  --timeline-marker-border: #{$bg-primary-dark};
+  
+  // Floating action buttons
+  --fab-bg: linear-gradient(135deg, #{$primary-blue-light}, #{$primary-blue});
+  --fab-shadow: #{rgba(93, 173, 226, 0.4)};
+  --fab-hover-shadow: #{rgba(93, 173, 226, 0.6)};
+  
+  // Back to top button
+  --back-to-top-bg: #{$bg-tertiary-dark};
+  --back-to-top-hover: #{$border-dark};
+  
+  // Skill tags
+  --skill-tag-bg: #{$bg-accent-dark};
+  --skill-tag-text: #{$text-primary-dark};
+  --skill-tag-border: #{$border-dark};
+  --skill-tag-hover-bg: #{$primary-blue-light};
+  --skill-tag-hover-text: #{$bg-primary-dark};
+  
+  // Certification cards
+  --cert-status-completed: #{$success-light};
+  --cert-status-progress: #{$warning-light};
+  --cert-provider-text: #{$primary-blue-light};
+  
+  // Footer
+  --footer-bg: #{$bg-secondary-dark};
+  --footer-text: #{$text-secondary-dark};
+  --footer-border: #{$border-dark};
+  
+  // ===== GRADIENTS =====
+  --gradient-primary: linear-gradient(135deg, #{$primary-blue-light}, #{$primary-blue});
+  --gradient-success: linear-gradient(135deg, #{$success-light}, #{$success});
+  --gradient-warning: linear-gradient(135deg, #{$warning-light}, #{$warning});
+  --gradient-error: linear-gradient(135deg, #{$error-light}, #{$error});
+  
+  // Text gradients
+  --text-gradient-primary: linear-gradient(135deg, #{$primary-blue-light}, #{$primary-blue});
+  --text-gradient-hero: linear-gradient(135deg, #{$white} 0%, #e3f2fd 100%);
+  
+  // ===== ANIMATIONS =====
+  --animation-duration-fast: #{$transition-fast};
+  --animation-duration-base: #{$transition-base};
+  --animation-duration-slow: #{$transition-slow};
+  
+  // ===== BACKDROP FILTERS =====
+  --backdrop-blur: blur(10px);
+  --backdrop-blur-strong: blur(20px);
+  
+  // ===== COMPONENT STATES =====
+  
+  // Hover states
+  --hover-bg: #{rgba(93, 173, 226, 0.15)};
+  --hover-border: #{$primary-blue-light};
+  
+  // Focus states
+  --focus-ring: #{rgba(93, 173, 226, 0.3)};
+  --focus-border: #{$primary-blue-light};
+  
+  // Active states
+  --active-bg: #{rgba(93, 173, 226, 0.25)};
+  --active-border: #{$primary-blue};
+  
+  // Disabled states
+  --disabled-bg: #{$bg-tertiary-dark};
+  --disabled-text: #{$text-tertiary-dark};
+  --disabled-border: #{$border-dark};
+}
+
+// ===== DARK THEME SPECIFIC OVERRIDES =====
+
+[data-theme="dark"] {
+  // Ensure proper contrast for certain elements
+  .hero {
+    // Hero section maintains same styling in dark theme
+    color: var(--hero-text);
+    
+    .hero-title {
+      background: var(--text-gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      color: var(--hero-text-secondary);
+    }
+    
+    .hero-tagline {
+      color: var(--hero-text-tertiary);
+    }
+  }
+  
+  // Navigation styling for dark theme
+  .nav-link {
+    color: var(--text-primary);
+    
+    &:hover,
+    &:focus,
+    &.active {
+      color: var(--accent-color);
+    }
+  }
+  
+  // Hamburger menu styling
+  .bar {
+    background: var(--text-primary);
+  }
+  
+  // Logo text
+  .logo-text {
+    color: var(--accent-color);
+  }
+  
+  // Form elements with better contrast
+  input,
+  textarea,
+  select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+    
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+    
+    &:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+    
+    &.error {
+      border-color: var(--input-error);
+    }
+  }
+  
+  // Code blocks
+  code {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+  
+  pre {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+  
+  // Blockquotes
+  blockquote {
+    background: var(--bg-secondary);
+    border-left-color: var(--accent-color);
+    color: var(--text-secondary);
+    
+    &::before {
+      color: var(--accent-color);
+    }
+    
+    cite {
+      color: var(--text-tertiary);
+    }
+  }
+  
+  // Enhanced shadows for dark theme
+  .card,
+  .expertise-card,
+  .cert-card,
+  .timeline-content,
+  .education-card {
+    box-shadow: 0 10px 30px var(--card-shadow);
+    
+    &:hover {
+      box-shadow: 0 20px 40px var(--shadow-medium);
+    }
+  }
+  
+  // Scrollbar styling for dark theme
+  &::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    
+    &:hover {
+      background: var(--text-tertiary);
+    }
+  }
+}
+
+// ===== DARK THEME MEDIA QUERY SUPPORT =====
+
+// Automatic dark theme based on system preference
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    // Apply dark theme variables when system prefers dark
+    // and no explicit light theme is set
+    
+    // ===== BACKGROUND COLORS =====
+    --bg-primary: #{$bg-primary-dark};
+    --bg-secondary: #{$bg-secondary-dark};
+    --bg-tertiary: #{$bg-tertiary-dark};
+    --bg-accent: #{$bg-accent-dark};
+    
+    // Card backgrounds
+    --card-bg: #{$bg-secondary-dark};
+    --card-shadow: #{rgba(0, 0, 0, 0.3)};
+    
+    // ===== TEXT COLORS =====
+    --text-primary: #{$text-primary-dark};
+    --text-secondary: #{$text-secondary-dark};
+    --text-tertiary: #{$text-tertiary-dark};
+    --text-inverse: #{$text-inverse-dark};
+    
+    // ===== BORDER COLORS =====
+    --border-color: #{$border-dark};
+    
+    // ===== ACCENT COLORS =====
+    --accent-color: #{$primary-blue-light};
+    --accent-hover: #{$primary-blue};
+  }
+}

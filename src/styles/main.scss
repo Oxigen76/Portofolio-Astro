@@ -1,0 +1,41 @@
+// Main SCSS entry point
+// This file imports all other SCSS modules in the correct order
+
+// 1. Variables and configuration
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+// 2. Base styles and reset
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+// 3. Layout components
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/navigation';
+
+// 4. Component styles
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/forms';
+@import 'components/hero';
+@import 'components/timeline';
+@import 'components/skills';
+@import 'components/certifications';
+
+// 5. Utility classes
+@import 'utilities/layout';
+@import 'utilities/spacing';
+@import 'utilities/text';
+@import 'utilities/animations';
+
+// 6. Theme-specific styles
+@import 'themes/light';
+@import 'themes/dark';
+
+// 7. Responsive design
+@import 'responsive/mobile';
+@import 'responsive/tablet';
+@import 'responsive/desktop';

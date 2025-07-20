@@ -1,0 +1,211 @@
+// Card component styles
+
+.card {
+  @include card;
+  
+  &:hover {
+    @include hover-lift;
+  }
+}
+
+.card-header {
+  padding: $spacing-base $spacing-lg;
+  border-bottom: 1px solid var(--border-color);
+  
+  h3, h4, h5, h6 {
+    margin: 0;
+    color: var(--text-primary);
+  }
+}
+
+.card-body {
+  padding: $spacing-lg;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-footer {
+  padding: $spacing-base $spacing-lg;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-radius: 0 0 $card-border-radius $card-border-radius;
+}
+
+// About section cards
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: $spacing-3xl;
+  align-items: start;
+  
+  @include mobile-only {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.profile-section {
+  text-align: center;
+}
+
+.profile-image-container {
+  margin-bottom: $spacing-xl;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: $border-radius-xl;
+  object-fit: cover;
+  border: 4px solid var(--accent-color);
+  box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+  transition: transform $transition-base ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.profile-info h3 {
+  @include heading-4;
+  color: var(--text-primary);
+  margin-bottom: $spacing-base;
+}
+
+.location, .availability {
+  color: var(--text-secondary);
+  margin-bottom: $spacing-sm;
+}
+
+.about-text p {
+  margin-bottom: $spacing-lg;
+  color: var(--text-primary);
+  font-size: $font-size-lg;
+}
+
+.key-principles {
+  margin-top: $spacing-xl;
+  
+  h4 {
+    @include heading-5;
+    color: var(--text-primary);
+    margin-bottom: $spacing-base;
+  }
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-base;
+  
+  @include mobile-only {
+    grid-template-columns: 1fr;
+  }
+}
+
+.principle {
+  text-align: center;
+  padding: $spacing-base;
+  @include card;
+  transition: transform $transition-base ease;
+  
+  &:hover,
+  &:focus {
+    transform: translateY(-5px);
+    outline: none;
+  }
+}
+
+.principle-icon {
+  font-size: $font-size-3xl;
+  display: block;
+  margin-bottom: $spacing-sm;
+}
+
+.principle h5 {
+  @include heading-6;
+  color: var(--text-primary);
+  margin-bottom: $spacing-sm;
+}
+
+.principle p {
+  color: var(--text-secondary);
+  font-size: $font-size-sm;
+  margin: 0;
+}
+
+// Education card
+.education-card {
+  display: flex;
+  align-items: center;
+  @include card;
+  max-width: 800px;
+  margin: 0 auto;
+  transition: transform $transition-base ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+  
+  @include mobile-only {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.education-logo {
+  width: 80px;
+  height: 80px;
+  margin-right: $spacing-xl;
+  @include flex-center;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: $border-radius-md;
+  padding: $spacing-sm;
+  border: 2px solid rgba(52, 152, 219, 0.2);
+  transition: all $transition-base ease;
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 60px;
+    object-fit: contain;
+    filter: brightness(1.1);
+  }
+  
+  @include mobile-only {
+    margin-right: 0;
+    margin-bottom: $spacing-base;
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.education-card:hover .education-logo {
+  background: rgba(52, 152, 219, 0.15);
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.education-content h3 {
+  @include heading-4;
+  color: var(--text-primary);
+  margin-bottom: $spacing-sm;
+}
+
+.institution {
+  color: var(--accent-color);
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+}
+
+.duration {
+  color: var(--text-secondary);
+  margin-bottom: $spacing-base;
+}
+
+.description {
+  color: var(--text-primary);
+  margin: 0;
+}

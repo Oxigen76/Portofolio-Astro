@@ -1,33 +1,234 @@
 ---
-
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Portfolio</title>
-  </head>
-  <body>
-    <header>
-      <h1>Portfolio Header</h1>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </nav>
-    <main>
-      <h1>Bine ai venit în portofoliul meu!</h1>
-      <p>Acesta este portofoliul meu personal construit cu Astro.</p>
-    </main>
-    <footer>
-      <p>&copy; 2025 Portfolio. Toate drepturile rezervate.</p>
-    </footer>
-  </body>
-</html>
+<MainLayout 
+  title="Portfolio – Dragos Victor | Cybersecurity Specialist"
+  description="Professional cybersecurity portfolio showcasing expertise in penetration testing, vulnerability assessment, and security consulting."
+  canonical="https://dragosvictor.tech/"
+>
+  <!-- Hero Section -->
+  <section data-testid="hero-section" class="hero">
+    <div class="hero-content">
+      <h1 data-testid="hero-title">Welcome to my portfolio!</h1>
+      <p data-testid="hero-description">
+        I'm Dragos Victor, a cybersecurity specialist with experience in penetration testing, 
+        vulnerability assessment, and security consulting.
+      </p>
+      <div class="hero-actions">
+        <a href="#about" class="btn btn-primary" data-testid="cta-about">
+          About Me
+        </a>
+        <a href="#contact" class="btn btn-secondary" data-testid="cta-contact">
+          Contact
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Temporary navigation for testing -->
+  <nav data-testid="temp-navigation" class="temp-nav">
+    <ul>
+      <li><a href="/" data-testid="nav-home">Home</a></li>
+      <li><a href="/about" data-testid="nav-about">About</a></li>
+      <li><a href="/projects" data-testid="nav-projects">Projects</a></li>
+      <li><a href="/contact" data-testid="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Content sections placeholders -->
+  <section id="about" data-testid="about-section" class="section">
+    <h2>About Me</h2>
+    <p>The about section will be implemented in the following tasks.</p>
+  </section>
+
+  <section id="contact" data-testid="contact-section" class="section">
+    <h2>Contact</h2>
+    <p>The contact form will be implemented in the following tasks.</p>
+  </section>
+</MainLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--header-bg) 100%);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--accent-color);
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  /* Temporary Navigation */
+  .temp-nav {
+    background-color: var(--header-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+  }
+  
+  .temp-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .temp-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .temp-nav a:hover {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .section:last-child {
+    border-bottom: none;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+  
+  .section p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 0;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+    }
+    
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+    }
+    
+    .temp-nav ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .temp-nav a {
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+    
+    .section {
+      padding: 2rem 0;
+    }
+    
+    .section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

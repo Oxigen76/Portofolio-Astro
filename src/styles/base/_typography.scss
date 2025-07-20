@@ -1,0 +1,439 @@
+// Typography styles and font loading
+
+// ===== FONT LOADING =====
+
+// Preload critical fonts (to be added to HTML head)
+// <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+
+// ===== HEADING STYLES =====
+
+h1, .h1 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-lg;
+  @include heading-1;
+}
+
+h2, .h2 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-base;
+  @include heading-2;
+  
+  // Section headers with underline
+  &.section-title {
+    position: relative;
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -#{$spacing-sm};
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      border-radius: $border-radius-sm;
+    }
+  }
+}
+
+h3, .h3 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-base;
+  @include heading-3;
+}
+
+h4, .h4 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-md;
+  @include heading-4;
+}
+
+h5, .h5 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-md;
+  @include heading-5;
+}
+
+h6, .h6 {
+  color: var(--text-primary);
+  margin-bottom: $spacing-sm;
+  @include heading-6;
+}
+
+// ===== BODY TEXT STYLES =====
+
+p, .body-text {
+  @include body-base;
+  color: var(--text-primary);
+  margin-bottom: $spacing-base;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &.lead {
+    @include body-large;
+    color: var(--text-secondary);
+    font-weight: $font-weight-medium;
+  }
+  
+  &.small {
+    @include body-small;
+    color: var(--text-secondary);
+  }
+}
+
+// ===== TEXT UTILITIES =====
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-tertiary {
+  color: var(--text-tertiary) !important;
+}
+
+.text-inverse {
+  color: var(--text-inverse) !important;
+}
+
+.text-accent {
+  color: var(--accent-color) !important;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.text-warning {
+  color: var(--warning-color) !important;
+}
+
+.text-error {
+  color: var(--error-color) !important;
+}
+
+// Text sizes
+.text-xs {
+  font-size: $font-size-xs !important;
+}
+
+.text-sm {
+  font-size: $font-size-sm !important;
+}
+
+.text-base {
+  font-size: $font-size-base !important;
+}
+
+.text-lg {
+  font-size: $font-size-lg !important;
+}
+
+.text-xl {
+  font-size: $font-size-xl !important;
+}
+
+.text-2xl {
+  font-size: $font-size-2xl !important;
+}
+
+.text-3xl {
+  font-size: $font-size-3xl !important;
+}
+
+.text-4xl {
+  font-size: $font-size-4xl !important;
+}
+
+.text-5xl {
+  font-size: $font-size-5xl !important;
+}
+
+.text-6xl {
+  font-size: $font-size-6xl !important;
+}
+
+// Font weights
+.font-light {
+  font-weight: $font-weight-light !important;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal !important;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium !important;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold !important;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold !important;
+}
+
+.font-extrabold {
+  font-weight: $font-weight-extrabold !important;
+}
+
+// Text alignment
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+// Text decoration
+.underline {
+  text-decoration: underline !important;
+}
+
+.no-underline {
+  text-decoration: none !important;
+}
+
+.line-through {
+  text-decoration: line-through !important;
+}
+
+// Text transform
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+.normal-case {
+  text-transform: none !important;
+}
+
+// Line height
+.leading-tight {
+  line-height: $line-height-tight !important;
+}
+
+.leading-snug {
+  line-height: $line-height-snug !important;
+}
+
+.leading-normal {
+  line-height: $line-height-normal !important;
+}
+
+.leading-relaxed {
+  line-height: $line-height-relaxed !important;
+}
+
+.leading-loose {
+  line-height: $line-height-loose !important;
+}
+
+// ===== SPECIAL TEXT EFFECTS =====
+
+.text-gradient {
+  @include text-gradient;
+}
+
+.text-gradient-blue {
+  @include text-gradient(var(--accent-color), var(--accent-hover));
+}
+
+.text-gradient-success {
+  @include text-gradient(var(--success-color), lighten-color($success, 20%));
+}
+
+// Text truncation
+.truncate {
+  @include truncate;
+}
+
+.line-clamp-1 {
+  @include line-clamp(1);
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.line-clamp-3 {
+  @include line-clamp(3);
+}
+
+.line-clamp-4 {
+  @include line-clamp(4);
+}
+
+// ===== LISTS =====
+
+ul, ol {
+  &.styled-list {
+    list-style: none;
+    padding-left: 0;
+    
+    li {
+      position: relative;
+      padding-left: $spacing-lg;
+      margin-bottom: $spacing-sm;
+      color: var(--text-primary);
+      
+      &::before {
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+ul.styled-list li::before {
+  content: '•';
+  font-size: 1.2em;
+}
+
+ol.styled-list {
+  counter-reset: styled-counter;
+  
+  li {
+    counter-increment: styled-counter;
+    
+    &::before {
+      content: counter(styled-counter) '.';
+    }
+  }
+}
+
+// Checkmark list
+ul.check-list li::before {
+  content: '✓';
+  color: var(--success-color);
+}
+
+// Arrow list
+ul.arrow-list li::before {
+  content: '▶';
+  font-size: 0.8em;
+}
+
+// ===== BLOCKQUOTES =====
+
+blockquote {
+  position: relative;
+  padding: $spacing-lg $spacing-xl;
+  margin: $spacing-xl 0;
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--accent-color);
+  border-radius: $border-radius-base;
+  font-style: italic;
+  color: var(--text-secondary);
+  
+  &::before {
+    content: '"';
+    position: absolute;
+    top: $spacing-sm;
+    left: $spacing-base;
+    font-size: $font-size-4xl;
+    color: var(--accent-color);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  
+  p {
+    margin-bottom: $spacing-base;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  cite {
+    display: block;
+    margin-top: $spacing-base;
+    font-size: $font-size-sm;
+    color: var(--text-tertiary);
+    font-style: normal;
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// ===== CODE STYLES =====
+
+code {
+  font-family: $font-mono;
+  font-size: 0.9em;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 0.2em 0.4em;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--border-color);
+}
+
+pre {
+  font-family: $font-mono;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: $spacing-base;
+  border-radius: $border-radius-base;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  margin: $spacing-base 0;
+  
+  code {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+// ===== RESPONSIVE TYPOGRAPHY =====
+
+@include mobile-only {
+  h1, .h1 {
+    font-size: $font-size-4xl;
+    line-height: $line-height-tight;
+  }
+  
+  h2, .h2 {
+    font-size: $font-size-3xl;
+  }
+  
+  h3, .h3 {
+    font-size: $font-size-2xl;
+  }
+  
+  h4, .h4 {
+    font-size: $font-size-xl;
+  }
+  
+  .lead {
+    font-size: $font-size-base;
+  }
+}

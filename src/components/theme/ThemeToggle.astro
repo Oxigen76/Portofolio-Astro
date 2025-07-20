@@ -1,0 +1,560 @@
+---
+export interface Props {
+  class?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'button' | 'switch' | 'dropdown';
+  showLabel?: boolean;
+  position?: 'fixed' | 'relative';
+}
+
+const {
+  class: className = '',
+  size = 'md',
+  variant = 'button',
+  showLabel = false,
+  position = 'relative',
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-8 h-8 text-sm',
+  md: 'w-10 h-10 text-base',
+  lg: 'w-12 h-12 text-lg',
+};
+
+const positionClasses = {
+  fixed: 'fixed top-4 right-4 z-50',
+  relative: 'relative',
+};
+---
+
+{variant === 'button' && (
+  <button
+    id="theme-toggle"
+    class={`theme-toggle ${sizeClasses[size]} ${positionClasses[position]} ${className}`}
+    aria-label="Toggle theme"
+    aria-pressed="false"
+    data-testid="theme-toggle"
+    type="button"
+  >
+    <!-- Light theme icon -->
+    <svg
+      class="theme-icon theme-icon-light"
+      aria-hidden="true"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    
+    <!-- Dark theme icon -->
+    <svg
+      class="theme-icon theme-icon-dark"
+      aria-hidden="true"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    
+    <!-- System theme icon -->
+    <svg
+      class="theme-icon theme-icon-system"
+      aria-hidden="true"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+      <line x1="12" y1="17" x2="12" y2="21"></line>
+    </svg>
+    
+    {showLabel && (
+      <span class="theme-label sr-only" aria-live="polite">
+        <span class="theme-label-light">Switch to dark mode</span>
+        <span class="theme-label-dark">Switch to light mode</span>
+        <span class="theme-label-system">Switch to system theme</span>
+      </span>
+    )}
+  </button>
+)}
+
+{variant === 'dropdown' && (
+  <div class={`theme-dropdown ${className}`} data-testid="theme-dropdown">
+    <button
+      id="theme-dropdown-button"
+      class={`theme-dropdown-button ${sizeClasses[size]}`}
+      aria-label="Theme options"
+      aria-haspopup="true"
+      aria-expanded="false"
+      data-testid="theme-dropdown-button"
+      type="button"
+    >
+      <svg
+        class="theme-icon theme-icon-current"
+        aria-hidden="true"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg
+        class="dropdown-arrow"
+        aria-hidden="true"
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6,9 12,15 18,9"></polyline>
+      </svg>
+    </button>
+    
+    <div
+      id="theme-dropdown-menu"
+      class="theme-dropdown-menu"
+      role="menu"
+      aria-labelledby="theme-dropdown-button"
+      data-testid="theme-dropdown-menu"
+    >
+      <button
+        class="theme-option"
+        role="menuitem"
+        data-theme="light"
+        data-testid="theme-option-light"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <span>Light</span>
+      </button>
+      
+      <button
+        class="theme-option"
+        role="menuitem"
+        data-theme="dark"
+        data-testid="theme-option-dark"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span>Dark</span>
+      </button>
+      
+      <button
+        class="theme-option"
+        role="menuitem"
+        data-theme="system"
+        data-testid="theme-option-system"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span>System</span>
+      </button>
+    </div>
+  </div>
+)}
+
+<style>
+  /* Theme Toggle Button Styles */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .theme-toggle:hover {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .theme-toggle:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+  
+  /* Theme Icons */
+  .theme-icon {
+    position: absolute;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: rotate(180deg) scale(0.8);
+  }
+  
+  .theme-icon.active {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  
+  /* Theme Labels */
+  .theme-label {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .theme-label > span {
+    display: none;
+  }
+  
+  .theme-label > span.active {
+    display: inline;
+  }
+  
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Theme Dropdown Styles */
+  .theme-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .theme-dropdown-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .theme-dropdown-button:hover {
+    border-color: var(--accent-color);
+    background-color: var(--header-bg);
+  }
+  
+  .theme-dropdown-button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .dropdown-arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .theme-dropdown-button[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Dropdown Menu */
+  .theme-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 8rem;
+    background-color: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 50;
+  }
+  
+  .theme-dropdown-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.875rem;
+  }
+  
+  .theme-option:hover {
+    background-color: var(--header-bg);
+  }
+  
+  .theme-option:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+    background-color: var(--header-bg);
+  }
+  
+  .theme-option.active {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .theme-option:first-child {
+    border-radius: 0.375rem 0.375rem 0 0;
+  }
+  
+  .theme-option:last-child {
+    border-radius: 0 0 0.375rem 0.375rem;
+  }
+  
+  /* Smooth theme transitions */
+  :global(.theme-transition) {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  :global(.theme-transition *) {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Dark theme specific adjustments */
+  :global([data-theme="dark"]) .theme-dropdown-menu {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle,
+    .theme-icon,
+    .theme-dropdown-button,
+    .theme-dropdown-menu,
+    .theme-option,
+    .dropdown-arrow {
+      transition: none;
+    }
+    
+    :global(.theme-transition),
+    :global(.theme-transition *) {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // This script will be processed by Astro and included in the page
+  import { ThemeManager } from '../../utils/theme/ThemeManager';
+  
+  // Initialize theme manager
+  const themeManager = new ThemeManager({
+    enableTransitions: true,
+    transitionDuration: 300,
+  });
+  
+  // Initialize theme toggle functionality
+  function initThemeToggle() {
+    const toggleButton = document.getElementById('theme-toggle');
+    const dropdownButton = document.getElementById('theme-dropdown-button');
+    const dropdownMenu = document.getElementById('theme-dropdown-menu');
+    const themeOptions = document.querySelectorAll('.theme-option');
+    
+    // Simple toggle button
+    if (toggleButton) {
+      toggleButton.addEventListener('click', () => {
+        themeManager.toggleTheme();
+      });
+    }
+    
+    // Dropdown functionality
+    if (dropdownButton && dropdownMenu) {
+      dropdownButton.addEventListener('click', () => {
+        const isOpen = dropdownButton.getAttribute('aria-expanded') === 'true';
+        dropdownButton.setAttribute('aria-expanded', (!isOpen).toString());
+        dropdownMenu.classList.toggle('open', !isOpen);
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownButton.contains(e.target as Node) && !dropdownMenu.contains(e.target as Node)) {
+          dropdownButton.setAttribute('aria-expanded', 'false');
+          dropdownMenu.classList.remove('open');
+        }
+      });
+      
+      // Handle theme option selection
+      themeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const theme = option.getAttribute('data-theme') as 'light' | 'dark' | 'system';
+          if (theme) {
+            themeManager.setTheme(theme);
+            dropdownButton.setAttribute('aria-expanded', 'false');
+            dropdownMenu.classList.remove('open');
+          }
+        });
+      });
+    }
+    
+    // Update UI when theme changes
+    themeManager.addListener((event) => {
+      updateThemeUI(event.theme, event.resolvedTheme);
+    });
+    
+    // Initial UI update
+    updateThemeUI(themeManager.getTheme(), themeManager.getResolvedTheme());
+  }
+  
+  // Update theme UI elements
+  function updateThemeUI(theme: string, resolvedTheme: string) {
+    // Update toggle button
+    const toggleButton = document.getElementById('theme-toggle');
+    if (toggleButton) {
+      const icons = toggleButton.querySelectorAll('.theme-icon');
+      icons.forEach(icon => icon.classList.remove('active'));
+      
+      const activeIcon = toggleButton.querySelector(`.theme-icon-${resolvedTheme}`);
+      if (activeIcon) {
+        activeIcon.classList.add('active');
+      }
+      
+      toggleButton.setAttribute('aria-pressed', (resolvedTheme === 'dark').toString());
+      toggleButton.setAttribute('aria-label', `Switch to ${resolvedTheme === 'light' ? 'dark' : 'light'} mode`);
+    }
+    
+    // Update dropdown
+    const dropdownButton = document.getElementById('theme-dropdown-button');
+    if (dropdownButton) {
+      const currentIcon = dropdownButton.querySelector('.theme-icon-current');
+      if (currentIcon) {
+        // Update icon based on resolved theme
+        const iconHTML = resolvedTheme === 'dark' 
+          ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>'
+          : '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        currentIcon.innerHTML = iconHTML;
+      }
+    }
+    
+    // Update active theme option
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => {
+      option.classList.remove('active');
+      if (option.getAttribute('data-theme') === theme) {
+        option.classList.add('active');
+      }
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+  
+  // Export theme manager for global access
+  (window as any).themeManager = themeManager;
+</script>

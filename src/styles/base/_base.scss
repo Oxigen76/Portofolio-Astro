@@ -1,0 +1,371 @@
+// Base styles and global utilities
+
+// ===== ROOT STYLES =====
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  line-height: $line-height-normal;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+  transition: color $transition-base ease, background-color $transition-base ease;
+}
+
+// ===== GLOBAL LAYOUT =====
+
+.container {
+  @include container;
+}
+
+.container-sm {
+  @include container($container-sm);
+}
+
+.container-md {
+  @include container($container-md);
+}
+
+.container-lg {
+  @include container($container-lg);
+}
+
+.container-xl {
+  @include container($container-xl);
+}
+
+.container-2xl {
+  @include container($container-2xl);
+}
+
+// ===== SECTIONS =====
+
+.section {
+  padding: $spacing-5xl 0;
+  background-color: var(--bg-primary);
+  transition: background-color $transition-base ease;
+  
+  // Section animation
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  &.alt-bg {
+    background-color: var(--bg-secondary);
+  }
+  
+  @include mobile-only {
+    padding: $spacing-3xl 0;
+  }
+}
+
+
+
+.section-header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+  
+  .section-subtitle {
+    @include body-large;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: $spacing-base;
+  }
+}
+
+// ===== SKIP LINK =====
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--accent-color);
+  color: var(--text-inverse);
+  padding: $spacing-sm $spacing-base;
+  text-decoration: none;
+  border-radius: $border-radius-sm;
+  z-index: z-index('toast');
+  transition: top $transition-base ease;
+  font-weight: $font-weight-medium;
+  
+  // Ensure it's truly hidden from screen readers when not focused
+  @include sr-only;
+  
+  &:focus {
+    top: 6px;
+    // Make visible when focused
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: $spacing-sm $spacing-base;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    white-space: normal;
+  }
+}
+
+// ===== ACCESSIBILITY =====
+
+// Screen reader only content
+.sr-only {
+  @include sr-only;
+}
+
+// Focus visible improvements
+.focus-visible {
+  @include focus-visible;
+}
+
+// ===== LOADING STATES =====
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: wait;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: $border-radius-sm;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ===== ERROR STATES =====
+
+.error-message {
+  color: var(--error-color);
+  font-size: $font-size-sm;
+  margin-top: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &::before {
+    content: '⚠';
+    font-size: $font-size-base;
+  }
+}
+
+.success-message {
+  color: var(--success-color);
+  font-size: $font-size-sm;
+  margin-top: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &::before {
+    content: '✓';
+    font-size: $font-size-base;
+  }
+}
+
+// ===== INTERACTIVE ELEMENTS =====
+
+// Hover effects
+.hover-lift {
+  @include hover-lift;
+}
+
+.hover-scale {
+  transition: transform $transition-base $ease-out;
+  
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+}
+
+.hover-fade {
+  transition: opacity $transition-base $ease-out;
+  
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+// ===== VISIBILITY UTILITIES =====
+
+.visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+// Responsive visibility
+@include mobile-only {
+  .hidden-mobile {
+    display: none !important;
+  }
+  
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+@include tablet-up {
+  .hidden-tablet {
+    display: none !important;
+  }
+  
+  .show-tablet {
+    display: block !important;
+  }
+}
+
+@include desktop-up {
+  .hidden-desktop {
+    display: none !important;
+  }
+  
+  .show-desktop {
+    display: block !important;
+  }
+}
+
+// ===== POSITION UTILITIES =====
+
+.relative {
+  position: relative !important;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.sticky {
+  position: sticky !important;
+}
+
+// ===== OVERFLOW UTILITIES =====
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+
+// ===== CURSOR UTILITIES =====
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.cursor-wait {
+  cursor: wait !important;
+}
+
+.cursor-help {
+  cursor: help !important;
+}
+
+// ===== SELECTION =====
+
+::selection {
+  background: var(--accent-color);
+  color: var(--text-inverse);
+}
+
+::-moz-selection {
+  background: var(--accent-color);
+  color: var(--text-inverse);
+}
+
+// ===== SCROLLBAR STYLING =====
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: $border-radius-sm;
+  
+  &:hover {
+    background: var(--text-tertiary);
+  }
+}
+
+// Firefox scrollbar
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-secondary);
+}
+
+// ===== PRINT STYLES =====
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .section {
+    page-break-inside: avoid;
+  }
+  
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+}

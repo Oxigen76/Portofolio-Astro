@@ -20,7 +20,7 @@ describe('Asset Optimization', () => {
     });
 
     it('should return optimized image path', () => {
-      const path = getOptimizedImagePath('/images/test.jpg', 800);
+      const path = getOptimizedImagePath('/images/test.jpg');
       expect(path).toBe('/images/test.jpg');
     });
   });
