@@ -1,0 +1,131 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test and Lint
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: astro-portfolio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./astro-portfolio
+
+      - name: Type check
+        run: npm run type-check
+        working-directory: ./astro-portfolio
+
+      - name: Lint code
+        run: npm run lint
+        working-directory: ./astro-portfolio
+
+      - name: Lint styles
+        run: npm run lint:style
+        working-directory: ./astro-portfolio
+
+      - name: Check formatting
+        run: npm run format:check
+        working-directory: ./astro-portfolio
+
+      - name: Run unit tests
+        run: npm run test
+        working-directory: ./astro-portfolio
+
+      - name: Build project
+        run: npm run build
+        working-directory: ./astro-portfolio
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: astro-portfolio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./astro-portfolio
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+        working-directory: ./astro-portfolio
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+        working-directory: ./astro-portfolio
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: astro-portfolio/playwright-report/
+          retention-days: 30
+
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [test, e2e-tests]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: astro-portfolio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./astro-portfolio
+
+      - name: Build for production
+        run: npm run build:prod
+        working-directory: ./astro-portfolio
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: astro-portfolio/dist/
+          retention-days: 7
+
+      # Add deployment steps here based on your hosting provider
+      # Example for GitHub Pages:
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./astro-portfolio/dist

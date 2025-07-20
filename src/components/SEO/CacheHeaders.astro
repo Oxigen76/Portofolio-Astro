@@ -1,0 +1,44 @@
+---
+/**
+ * Cache control headers for static assets
+ * This component generates meta tags that can be used by hosting providers
+ * for setting appropriate cache headers
+ */
+
+export interface Props {
+  maxAge?: number;
+  staleWhileRevalidate?: number;
+  immutable?: boolean;
+}
+
+const {
+  maxAge = 31536000, // 1 year default
+  staleWhileRevalidate = 86400, // 1 day default
+  immutable = false,
+} = Astro.props;
+
+const cacheControl = [
+  `max-age=${maxAge}`,
+  staleWhileRevalidate && `stale-while-revalidate=${staleWhileRevalidate}`,
+  immutable && 'immutable',
+].filter(Boolean).join(', ');
+---
+
+<!-- Cache control hints for hosting providers -->
+<meta name="cache-control" content={cacheControl} />
+
+<!-- Preconnect to external domains for faster loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+<script>
+  // Set cache headers programmatically if supported
+  if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+    // Service worker can handle caching strategies
+    console.log('Service Worker supported for advanced caching');
+  }
+</script>
